@@ -68,7 +68,7 @@ public class FindMispellingCharInString_SingleForLoop_NotWorking {
         int lengthDiff = sLength - tLength; // Finding the length difference between S string and T string
 
         // Consider only if both string lengths are equal by adding/deleting one character or be default.
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         if((sLength == tLength) || (sLength + 1 == tLength) || (sLength - 1 == tLength)){
             for(int i=0;i<sLength;i++){
                 char sChar = S.charAt(i);
@@ -78,8 +78,8 @@ public class FindMispellingCharInString_SingleForLoop_NotWorking {
                 }
 
                 if(sLength == tLength && (i != sLength-1)){
-                    sb.append(S.substring(0,i)).append(S.charAt(i+1)).append(S.charAt(i)).append(S.substring(i+2,sLength));
-                    if(T.equals(sb.toString())){
+                    builder.append(S.substring(0,i)).append(S.charAt(i+1)).append(S.charAt(i)).append(S.substring(i+2,sLength));
+                    if(T.equals(builder.toString())){
                         return "SWAP "+S.charAt(i) +" " + S.charAt(i+1);
                     }
 
@@ -87,17 +87,17 @@ public class FindMispellingCharInString_SingleForLoop_NotWorking {
                     char insertChar = tChar;
                     if((i+2) == tLength){
                         insertChar = T.charAt(i+1);
-                        sb.append(S.substring(0,i+1)).append(insertChar);
+                        builder.append(S.substring(0,i+1)).append(insertChar);
                     }else{
-                        sb.append(S.substring(0,i)).append(tChar).append(S.substring(i,sLength));
+                        builder.append(S.substring(0,i)).append(tChar).append(S.substring(i,sLength));
                     }
 
-                    if(T.equals(sb.toString())){
+                    if(T.equals(builder.toString())){
                         return "INSERT "+insertChar;
                     }
                 } else if(sLength - 1 == tLength) {
-                    sb.append(S.substring(0,i)).append(S.substring(i+1,sLength));
-                    if(T.equals(sb.toString())){
+                    builder.append(S.substring(0,i)).append(S.substring(i+1,sLength));
+                    if(T.equals(builder.toString())){
                         return "DELETE "+sChar;
                     }
                 }

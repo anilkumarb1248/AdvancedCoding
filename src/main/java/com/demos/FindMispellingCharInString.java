@@ -78,15 +78,15 @@ public class FindMispellingCharInString {
         int tLength = T.length();
 
         int lengthDiff = sLength - tLength; // Finding the length difference between S string and T string
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         // Consider only if both string lengths are equal by adding/deleting one character or by default.
         if (lengthDiff == 0) { // We need to swap if two string lengths are same
             for (int index = 0; index < sLength; index++) {
                 if (S.charAt(index) != T.charAt(index)) {
                     if ((index != sLength - 1)) {
-                        sb.append(S, 0, index).append(S.charAt(index + 1)).append(S.charAt(index)).append(S, index + 2, sLength);
-                        if (T.equals(sb.toString())) {
+                        builder.append(S, 0, index).append(S.charAt(index + 1)).append(S.charAt(index)).append(S, index + 2, sLength);
+                        if (T.equals(builder.toString())) {
                             return "SWAP " + S.charAt(index) + " " + S.charAt(index + 1);
                         }
                     }
@@ -99,12 +99,12 @@ public class FindMispellingCharInString {
                     char insertChar = T.charAt(index);
                     if ((index + 2) == tLength) {
                         insertChar = T.charAt(index + 1);
-                        sb.append(S, 0, index + 1).append(insertChar);
+                        builder.append(S, 0, index + 1).append(insertChar);
                     } else {
-                        sb.append(S, 0, index).append(T.charAt(index)).append(S, index, sLength);
+                        builder.append(S, 0, index).append(T.charAt(index)).append(S, index, sLength);
                     }
 
-                    if (T.equals(sb.toString())) {
+                    if (T.equals(builder.toString())) {
                         return "INSERT " + insertChar;
                     }
                     break;
@@ -113,13 +113,13 @@ public class FindMispellingCharInString {
         } else if (lengthDiff == 1) { // We need to delete one character if S length is greater than one then T length
             for (int index = 0; index < sLength; index++) {
                 if(index+1 == sLength && index == tLength){
-                    if(T.equals(sb.append(S, 0, index).toString())){
+                    if(T.equals(builder.append(S, 0, index).toString())){
                         return "DELETE " + S.charAt(index);
                     }
                 }
                 if (S.charAt(index) != T.charAt(index)) {
-                    sb.append(S, 0, index).append(S, index + 1, sLength);
-                    if (T.equals(sb.toString())) {
+                    builder.append(S, 0, index).append(S, index + 1, sLength);
+                    if (T.equals(builder.toString())) {
                         return "DELETE " + S.charAt(index);
                     }
                     break;
